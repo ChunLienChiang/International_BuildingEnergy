@@ -1,0 +1,50 @@
+﻿Market Sector,Property type,Source EUI (kBtu/ft2),Site EUI (kBtu/ft2)
+Banking/Financial Services,Bank Branch,209.9,88.3
+Banking/Financial Services,Financial Office,116.4,52.9
+Education,College/University,180.6,84.3
+Education,K-12 School,104.4,48.5
+Education,Pre-school/Daycare,131.5,64.8
+Education,Vocational School/Adult Education,110.4,52.4
+Public Assembly,Convention Center/Meeting Hall,109.6,56.1
+Public Assembly,Recreation/Athletic Centers,112,50.8
+Public Assembly,Entertainment,112,56.2
+Public Assembly,Worship Facility,58.4,30.5
+Food Sales & Service,Convenience Store,592.6,231.4
+Food Sales & Service,Bar/Nightclub,297,130.7
+Food Sales & Service,Fast Food Restaurant,886.4,402.7
+Food Sales & Service,Restaurant,573.7,325.6
+Food Sales & Service,Supermarket/Grocery Store,444,196
+Food Sales & Service,Wholesale Club/Supercenter,120,51.4
+Healthcare,Ambulatory Surgical Center,138.3,62
+Healthcare,Hospital (General Medical & Surgical),426.9,234.3
+Healthcare,Other/Specialty Hospital,433.9,206.7
+Healthcare,Medical Office,121.7,51.2
+Healthcare,Outpatient Rehabilitation/Physical Therapy,138.3,62
+Healthcare,Urgent Care/Clinic/Other Outpatient,145.8,64.5
+Lodging/Residential,Barracks,107.5,57.9
+Lodging/Residential,Hotel,146.7,63
+Lodging/Residential,Multifamily Housing,118.1,59.6
+Lodging/Residential,Prison/Incarceration,156.4,69.9
+Lodging/Residential,Residence Hall/Dormitory,107.5,57.9
+Lodging/Residential,Residential Care Facility,213.2,99
+Mixed Use,Mixed Use Property,89.3,40.1
+Office,Medical Office,121.7,51.2
+Office,Office,116.4,52.9
+Office,Veterinary Office,145.8,64.5
+Public Services,Courthouse,211.4,101.2
+Public Services,Fire/Police Station,124.9,63.5
+Public Services,Library,143.6,71.6
+Public Services,Mailing Center/Post Office,96.9,47.9
+Public Services,Transportation Terminal/Station,112,56.2
+Retail,Automobile Dealership,124.1,55
+Retail,Enclosed Mall,170.7,65.7
+Retail,Strip Mall,228.8,103.5
+Retail,Retail Store,120,103.5
+Technology/Science,Laboratory,318.2,115.3
+Services,"Dry cleaning, Shoe Repair, Locksmith, Salon, etc.",96.9,47.9
+Utility,Drinking Water Treatment & Distribution,5.9,2.3
+Utility,Energy/Power Station,89.3,40.1
+Warehouse/Storage,Self-Storage Facility,47.8,20.2
+Warehouse/Storage,Distribution Center,52.9,22.7
+Warehouse/Storage,Non-Refrigerated Warehouse,52.9,22.7
+Warehouse/Storage,Refrigerated Warehouse,235.6,84.1

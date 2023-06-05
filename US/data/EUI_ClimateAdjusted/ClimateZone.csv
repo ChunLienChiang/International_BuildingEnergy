@@ -1,0 +1,97 @@
+﻿City,Climate Zone (ASHRAE),Climate Zone (This paper),latitude,longitude
+"Honolulu, HI",1A Very Hot - Humid (Miami-FL),Hot-humid,21.3209,-157.8389
+"Miami, FL",1A Very Hot - Humid (Miami-FL),Hot-humid,25.9388,-80.2144
+"Austin, TX",2A Hot - Humid (Houston-TX),Hot-humid,30.2058,-97.8002
+"Cape Coral, FL",2A Hot - Humid (Houston-TX),Hot-humid,26.6356,-82.0164
+"College Station, TX",2A Hot - Humid (Houston-TX),Hot-humid,30.6131,-96.3217
+"Gainesville, FL",2A Hot - Humid (Houston-TX),Hot-humid,29.6851,-82.4324
+"Houston, TX",2A Hot - Humid (Houston-TX),Hot-humid,29.8688,-95.538
+"Tallahassee, FL",2A Hot - Humid (Houston-TX),Hot-humid,30.5802,-84.1266
+"Phoenix, AZ",2B Hot - Dry (Phoenix-AZ),Hot-dry,33.5586,-112.0955
+"Atlanta, GA",3A Warm - Humid (Memphis-TN),Hot-humid,33.8477,-84.2814
+"Columbia, SC",3A Warm - Humid (Memphis-TN),Hot-humid,34.0988,-81.0612
+"Dallas, TX",3A Warm - Humid (Memphis-TN),Hot-humid,32.7825,-96.8207
+"Jackson, MS",3A Warm - Humid (Memphis-TN),Hot-humid,32.3134,-90.172
+"Little Rock, AR",3A Warm - Humid (Memphis-TN),Hot-humid,34.7465,-92.2896
+"Montgomery, AL",3A Warm - Humid (Memphis-TN),Hot-humid,32.3934,-86.3222
+"Oklahoma City, OK",3A Warm - Humid (Memphis-TN),Hot-humid,35.5798,-97.5731
+"Abilene, TX",3B Warm - Dry (El Paso-TX),Hot-dry,32.3418,-99.9414
+"Carlsbad, CA",3B Warm - Dry (El Paso-TX),Hot-dry,33.0958,-117.2721
+"Chula Vista, CA",3B Warm - Dry (El Paso-TX),Hot-dry,32.6361,-117.0532
+"El Cajon, CA",3B Warm - Dry (El Paso-TX),Hot-dry,32.7952,-116.9671
+"Encinitas, CA",3B Warm - Dry (El Paso-TX),Hot-dry,33.0501,-117.2528
+"Escondido, CA",3B Warm - Dry (El Paso-TX),Hot-dry,33.1192,-117.0864
+"Fallbrook, CA",3B Warm - Dry (El Paso-TX),Hot-dry,33.3989,-117.2957
+"La Jolla, CA",3B Warm - Dry (El Paso-TX),Hot-dry,32.8667,-117.2481
+"La Mesa, CA",3B Warm - Dry (El Paso-TX),Hot-dry,32.7596,-116.994
+"Los Angeles, CA",3B Warm - Dry (El Paso-TX),Hot-dry,34.0396,-118.2661
+"Oceanside, CA",3B Warm - Dry (El Paso-TX),Hot-dry,33.2004,-117.2907
+"Poway, CA",3B Warm - Dry (El Paso-TX),Hot-dry,32.9775,-117.0232
+"Sacramento, CA",3B Warm - Dry (El Paso-TX),Hot-dry,38.5517,-121.4501
+"San Diego, CA",3B Warm - Dry (El Paso-TX),Hot-dry,32.9014,-117.2079
+"San Marcos, CA",3B Warm - Dry (El Paso-TX),Hot-dry,33.1565,-117.1707
+"Vista, CA",3B Warm - Dry (El Paso-TX),Hot-dry,33.182,-117.2468
+"San Francisco, CA",3C Warm - Marine (San Francisco-CA),Hot-marine,37.7353,-122.3732
+"San Jose, CA",3C Warm - Marine (San Francisco-CA),Hot-marine,37.3239,-121.9144
+"Annapolis, MD",4A Mixed - Humid (Baltimore-MD),Mixed-humid,38.9879,-76.5454
+"Bloomington, IN",4A Mixed - Humid (Baltimore-MD),Mixed-humid,39.079,-86.6175
+"Charleston, WV",4A Mixed - Humid (Baltimore-MD),Mixed-humid,38.2944,-81.6096
+"Dover, DE",4A Mixed - Humid (Baltimore-MD),Mixed-humid,39.1817,-75.5971
+"Evansville, IN",4A Mixed - Humid (Baltimore-MD),Mixed-humid,37.9708,-87.4897
+"Fayetteville, AR",4A Mixed - Humid (Baltimore-MD),Mixed-humid,36.1189,-93.984
+"Frankfort, KY",4A Mixed - Humid (Baltimore-MD),Mixed-humid,38.2357,-84.9592
+"Jefferson City, MO",4A Mixed - Humid (Baltimore-MD),Mixed-humid,38.5516,-92.2745
+"Louisville, KY",4A Mixed - Humid (Baltimore-MD),Mixed-humid,38.0858,-85.8495
+"Lynchburg, VA",4A Mixed - Humid (Baltimore-MD),Mixed-humid,37.344,-79.2064
+"Nashville, TN",4A Mixed - Humid (Baltimore-MD),Mixed-humid,36.1473,-86.777
+"New York, NY",4A Mixed - Humid (Baltimore-MD),Mixed-humid,40.7528,-73.9725
+"Philadelphia, PA",4A Mixed - Humid (Baltimore-MD),Mixed-humid,39.9524,-75.1653
+"Raleigh, NC",4A Mixed - Humid (Baltimore-MD),Mixed-humid,35.8181,-78.5636
+"Richmond, VA",4A Mixed - Humid (Baltimore-MD),Mixed-humid,37.5858,-77.4888
+"Roanoke, VA",4A Mixed - Humid (Baltimore-MD),Mixed-humid,37.2177,-79.921
+"Topeka, KS",4A Mixed - Humid (Baltimore-MD),Mixed-humid,39.038,-95.7278
+"Washington, DC",4A Mixed - Humid (Baltimore-MD),Mixed-humid,38.8749,-77.0325
+"Albuquerque, NM",4B Mixed - Dry (Albuquerque-NM),Mixed-dry,35.0441,-106.8904
+"Bellingham, WA",4C Mixed - Marine (Salem-OR),Mixed-marine,48.7395,-122.4809
+"Olympia, WA",4C Mixed - Marine (Salem-OR),Mixed-marine,46.9445,-123.0493
+"Portland, OR",4C Mixed - Marine (Salem-OR),Mixed-marine,45.4691,-122.5535
+"Salem, OR",4C Mixed - Marine (Salem-OR),Mixed-marine,44.9016,-122.9223
+"Seattle, WA",4C Mixed - Marine (Salem-OR),Mixed-marine,47.6026,-122.3284
+"Albany, NY",5A Cool - Humid (Chicago-IL),Cold-humid,42.6849,-73.8318
+"Ann Arbor, MI",5A Cool - Humid (Chicago-IL),Cold-humid,42.2734,-83.7133
+"Boston, MA",5A Cool - Humid (Chicago-IL),Cold-humid,42.3496,-71.0746
+"Champaign, IL",5A Cool - Humid (Chicago-IL),Cold-humid,40.1319,-88.2952
+"Chicago, IL",5A Cool - Humid (Chicago-IL),Cold-humid,41.9288,-87.6315
+"Columbus, OH",5A Cool - Humid (Chicago-IL),Cold-humid,39.8928,-82.9588
+"Des Moines, IA",5A Cool - Humid (Chicago-IL),Cold-humid,41.5839,-93.6289
+"Detroit, MI",5A Cool - Humid (Chicago-IL),Cold-humid,42.3679,-83.1386
+"Harrisburg, PA",5A Cool - Humid (Chicago-IL),Cold-humid,40.2762,-76.7889
+"Hartford, CT",5A Cool - Humid (Chicago-IL),Cold-humid,41.7686,-72.6745
+"Indianapolis, IN",5A Cool - Humid (Chicago-IL),Cold-humid,39.793,-86.2853
+"Lansing, MI",5A Cool - Humid (Chicago-IL),Cold-humid,42.7422,-84.5255
+"Lincoln, NE",5A Cool - Humid (Chicago-IL),Cold-humid,40.8176,-96.7114
+"Monroe, MI",5A Cool - Humid (Chicago-IL),Cold-humid,41.9505,-83.4457
+"Omaha, NE",5A Cool - Humid (Chicago-IL),Cold-humid,41.2079,-96.1183
+"Providence, RI",5A Cool - Humid (Chicago-IL),Cold-humid,41.8195,-71.4107
+"Springfield, IL",5A Cool - Humid (Chicago-IL),Cold-humid,39.8011,-89.6502
+"Trenton, NJ",5A Cool - Humid (Chicago-IL),Cold-humid,40.2648,-74.8243
+"Boise, ID",5B Cool - Dry (Boise-ID),Cold-dry,43.561,-116.2135
+"Boulder, CO",5B Cool - Dry (Boise-ID),Cold-dry,40.0878,-105.3735
+"Carson City, NV",5B Cool - Dry (Boise-ID),Cold-dry,39.1496,-119.7178
+"Denver, CO",5B Cool - Dry (Boise-ID),Cold-dry,39.7525,-104.9995
+"Flagstaff, AZ",5B Cool - Dry (Boise-ID),Cold-dry,35.1981,-111.6513
+"Fort Collins, CO",5B Cool - Dry (Boise-ID),Cold-dry,40.5939,-105.1256
+"Grand Junction, CO",5B Cool - Dry (Boise-ID),Cold-dry,39.1264,-108.5363
+"Greeley, CO",5B Cool - Dry (Boise-ID),Cold-dry,40.3996,-104.8002
+"Salt Lake City, UT",5B Cool - Dry (Boise-ID),Cold-dry,40.7608,-111.8911
+"Santa Fe, NM",5B Cool - Dry (Boise-ID),Cold-dry,35.7847,-105.8749
+"Augusta, ME",6A Cold - Humid (Burlington-VT),Cold-humid,44.4051,-69.7567
+"Bismarck, ND",6A Cold - Humid (Burlington-VT),Cold-humid,46.8159,-100.7061
+"Burlington, VT",6A Cold - Humid (Burlington-VT),Cold-humid,44.4929,-73.2253
+"Concord, NH",6A Cold - Humid (Burlington-VT),Cold-humid,43.2081,-71.5376
+"Madison, WI",6A Cold - Humid (Burlington-VT),Cold-humid,43.1082,-89.2706
+"Milwaukee, WI",6A Cold - Humid (Burlington-VT),Cold-humid,43.0434,-87.8945
+"Minneapolis, MN",6A Cold - Humid (Burlington-VT),Cold-humid,45.0059,-93.4305
+"Saint Paul, MN",6A Cold - Humid (Burlington-VT),Cold-humid,45.0101,-93.1519
+"Cheyenne, WY",6B Cold - Dry (Helena-MT),Cold-dry,41.1034,-104.9059
+"Juneau, AK",7 Very Cold (Duluth-MN),Very cold,58.3019,-134.4197
