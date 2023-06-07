@@ -109,8 +109,8 @@ def Output_File(Data, Output_Language='English'):
 			'Pre-school/Daycare': '幼兒園/日托', \
 			'Vocational School/Adult Education': '職業學校/成人教育', \
 			'Convention Center/Meeting Hall': '會議中心/會議廳', \
-			'Recreation/Athletic Centers': '娛樂/運動中心', \
-			'Entertainment': '娛樂', \
+			'Recreation/Athletic Centers': '休閒/運動中心', \
+			'Entertainment': '娛樂場所', \
 			'Worship Facility': '宗教設施', \
 			'Convenience Store': '便利商店', \
 			'Bar/Nightclub': '酒吧/夜總會', \
@@ -151,11 +151,18 @@ def Output_File(Data, Output_Language='English'):
 			'Non-Refrigerated Warehouse': '非冷藏倉庫', \
 			'Refrigerated Warehouse': '冷藏倉庫', \
 		})
+	
+	# Rename the columns
+	Data = Data.rename(columns={'Property type': '建物用途', 'Market Sector': '建物分類'})
 
+	# Add index column
+	Data.insert(0, '建物用途序號', range(1, len(Data) + 1))
+	
+	# Save the data
 	Output_Path = '../output/output_data/EUI_ClimateAdjusted/'
 	Output_File = 'EUI_ClimateAdjusted.csv'
 	if not os.path.exists(Output_Path):	os.makedirs(Output_Path)
-	df_EUI_ClimateAdjusted.round(2).to_csv(Output_Path + Output_File, index=False, encoding='utf-8-sig')
+	Data.round(2).to_csv(Output_Path + Output_File, index=False, encoding='utf-8-sig')
 
 if (__name__ == '__main__'):
 
