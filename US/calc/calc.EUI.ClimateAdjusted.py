@@ -153,7 +153,18 @@ def Output_File(Data, Output_Language='English'):
 		})
 	
 	# Rename the columns
-	Data = Data.rename(columns={'Property type': '建物用途', 'Market Sector': '建物分類'})
+	Data = Data.rename(columns={\
+		'Property type'   : '建物用途', \
+		'Market Sector'   : '建物分類', \
+		'EUI_Cold-dry'    : 'EUI_乾冷氣候區', \
+		'EUI_Cold-humid'  : 'EUI_溼冷氣候區', \
+		'EUI_Hot-dry'     : 'EUI_乾熱氣候區', \
+		'EUI_Hot-humid'   : 'EUI_溼熱氣候區', \
+		'EUI_Hot-marine'  : 'EUI_海洋性熱氣候區', \
+		'EUI_Mixed-dry'   : 'EUI_乾混合氣候區', \
+		'EUI_Mixed-humid' : 'EUI_溼混合氣候區', \
+		'EUI_Mixed-marine': 'EUI_海洋性混合氣候區', \
+	})
 
 	# Add index column
 	Data.insert(0, '建物用途序號', range(1, len(Data) + 1))
@@ -168,7 +179,7 @@ if (__name__ == '__main__'):
 
 	# Get data
 	df_EUI_ClimateStatistical = Get_EUI_ClimateStatistical()
-	df_EUI_EnergyStar      = Get_EUI_EnergyStar()
+	df_EUI_EnergyStar         = Get_EUI_EnergyStar()
 
 	# Calculate normalized EUI for climate zones relative to mean EUI (divided by mean EUI)
 	df_EUI_ClimateStatistical = Calc_NormalizedEUI(df_EUI_ClimateStatistical)
