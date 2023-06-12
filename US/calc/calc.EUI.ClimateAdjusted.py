@@ -6,8 +6,10 @@ Calculate the climate adjusted EUI for a building.
 2. Calculate the commercial-to-residential EUI ratio for each climate zone, and apply to the climate adjusted EUI to yield a residential EUI.
 """
 
+import numpy as np
 import pandas as pd
 import os
+from string import ascii_uppercase
 
 def Get_EUI_ClimateStatistical():
 
@@ -38,8 +40,11 @@ def Calc_NormalizedEUI(df_EUI_ClimateStatistical):
 	Normalize the EUI for each climate zone relative to the mean EUI of the climate zone.
 	===========================
 	Input:
+		
 		df_EUI_ClimateStatistical (DataFrame): EUI for each climate zone
+	
 	Output:
+		
 		df_EUI_ClimateStatistical (DataFrame): The original dataframe with new normalized EUI for each climate zone
 	"""
 
@@ -53,9 +58,13 @@ def Calc_Adjusted(df_EUI_ClimateAdjusted, df_EUI_ClimateStatistical):
 	Calculate the climate adjusted EUI for each climate zone.
 	===========================
 	Input:
+		
 		df_EUI_ClimateAdjusted (DataFrame): EUI for each building
+		
 		df_EUI_ClimateStatistical (DataFrame): EUI for each climate zone
+	
 	Output:
+		
 		df_EUI_ClimateAdjusted (DataFrame): The original dataframe with new climate adjusted EUI for each climate zone
 	"""
 
@@ -66,6 +75,9 @@ def Calc_Adjusted(df_EUI_ClimateAdjusted, df_EUI_ClimateStatistical):
 
 		# Calculate the residential EUI for each climate zone
 		df_EUI_ClimateAdjusted.loc[df_EUI_ClimateAdjusted['Market Sector']=='Lodging/Residential', 'EUI_{}'.format(i_Zone)] = df_EUI_ClimateAdjusted.apply(lambda x: x['EUI'] * df_EUI_ClimateStatistical.loc[(df_EUI_ClimateStatistical['Sector']=='Residential')&(df_EUI_ClimateStatistical['Zone']==i_Zone), 'EUI_Normalized'].values[0], axis=1)
+
+	# Remove the original EUI column
+	df_EUI_ClimateAdjusted = df_EUI_ClimateAdjusted.drop(columns=['EUI'])
 
 	return df_EUI_ClimateAdjusted
 
@@ -166,9 +178,17 @@ def Output_File(Data, Output_Language='English'):
 		'EUI_Mixed-marine': 'EUI_海洋性混合氣候區', \
 	})
 
+
 	# Add index column
-	Data.insert(0, '建物用途序號', range(1, len(Data) + 1))
+	Index_Character = iter(ascii_uppercase)
+	for i_Sector in Data['建物分類'].unique():
+
+		Data.loc[Data['建物分類'] == i_Sector, '建物用途序號'] = range(1, Data[Data['建物分類'] == i_Sector].shape[0] + 1)
+		Data.loc[Data['建物分類'] == i_Sector, '建物用途序號'] = next(Index_Character) + Data.loc[Data['建物分類'] == i_Sector, '建物用途序號'].astype(int).astype(str)
 	
+	# Rearrange the last columns to the first columns
+	Data = Data[Data.columns[-1:].tolist() + Data.columns[:-1].tolist()]
+
 	# Save the data
 	Output_Path = '../output/output_data/EUI_ClimateAdjusted/'
 	Output_File = 'EUI_ClimateAdjusted.csv'
