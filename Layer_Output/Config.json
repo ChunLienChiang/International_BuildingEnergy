@@ -1,0 +1,10 @@
+{
+    "Method1_BasicCIE": [
+        "All"
+    ],
+    "Method2_CountryEUI": [
+        "TW", 
+        "JP", 
+        "US"
+    ]
+}

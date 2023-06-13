@@ -13,6 +13,9 @@ def Get_Shapefile():
 	# Read shapefile: Building America and IECC Climate Zones by U.S. County Boundaries
 	gdf = gpd.read_file('../data/Shapefile.County/Building_America_and_IECC_Climate_Zones_by_US_County_Boundaries.shp')
 
+	# Simplify the geometry
+	gdf['geometry'] = gdf['geometry'].simplify(0.001, preserve_topology=True)
+
 	# Remove unnecessary columns
 	gdf = gdf[['NAME', 'STATE_NAME', 'IECC_Clima', 'IECC_Moist', 'geometry']]
 	
@@ -67,6 +70,9 @@ def Mapping_EUI(gdf_County, df_Group_EUI):
 		return ClimateZone
 
 	for i_Column in df_Group_EUI.columns: gdf_County[i_Column] = gdf_County.apply(lambda x: df_Group_EUI.loc['EUI_'+Mapping_County(x['CLIMATEZONE']), i_Column], axis=1)
+
+	# Remove unnecessary columns
+	gdf_County = gdf_County.drop(columns=['CLIMATEZONE'])
 	
 	return gdf_County
 
@@ -75,7 +81,7 @@ def Output_Shapefile(gdf, Output_Path, Output_Name):
 	# Set output path
 	if not os.path.exists(Output_Path):	os.makedirs(Output_Path)
 
-	# Round the number columns to 2 digits
+	# Round the number columns to 1 digits
 	gdf = gdf.round(1)
 
 	gdf.to_file(Output_Path + Output_Name, encoding='utf-8')
