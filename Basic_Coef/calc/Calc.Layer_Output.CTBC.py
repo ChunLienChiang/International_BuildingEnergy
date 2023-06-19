@@ -18,7 +18,6 @@ def Get_Shapefile(Spacial_Area='Merge'):
 	
 	if (Spacial_Area == 'Merge'):
 
-		gdf.loc[gdf['name']=='Kuril Islands', 'ISO_2'] = 'RU'
 		gdf.loc[gdf['name']=='Ma\'tan al-Sarra', 'ISO_2'] = 'LY'
 		gdf.loc[gdf['name']=='Jersey', 'ISO_2'] = 'GB'
 		gdf.loc[gdf['name']=='Glorioso Islands', 'ISO_2'] = 'FR'
@@ -32,6 +31,8 @@ def Get_Shapefile(Spacial_Area='Merge'):
 		gdf.loc[gdf['name']=='South Georgia & the South Sandwich Islands', 'ISO_2'] = 'GB'
 		gdf.loc[gdf['name']=='Hala\'ib Triangle', 'ISO_2'] = 'SD'
 		gdf.loc[gdf['name']=='Madeira Islands', 'ISO_2'] = 'PT'
+
+		gdf = gdf[gdf['name']!='Kuril Islands']
 	
 	else:
 
