@@ -27,7 +27,7 @@ def Get_Shapefile_CountryEUI(List_Country):
 		File_Name = os.listdir('../../{}/output/output_result/Shapefile/EUI.Prediction.CTBC.Global/'.format(i_Country))
 		File_Name = [i for i in File_Name if i.endswith('.shp')][0]
 		gdf_CountryEUI[i_Country] = gpd.read_file('../../{}/output/output_result/Shapefile/EUI.Prediction.CTBC.Global/{}'.format(i_Country, File_Name), encoding='utf-8').to_crs('epsg:4326')
-
+		
 	return gdf_CountryEUI
 
 def Combine_Shapefile(gdf_BasicCIE, gdf_CountryEUI):
@@ -72,7 +72,7 @@ if (__name__ == '__main__'):
 
 	# Combine the shapefiles
 	gdf_EUI = Combine_Shapefile(gdf_BasicCIE, gdf_CountryEUI)
-
+	
 	# ==================================================================================================
 	# Output geopandas dataframe to shape file
 	Output_Shapefile(\
