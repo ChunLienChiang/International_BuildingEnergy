@@ -98,7 +98,7 @@ def Output_Shapefile(gdf, Output_Path, Output_Name):
 	if not os.path.exists(Output_Path):	os.makedirs(Output_Path)
 
 	# Round the number columns to 1 digits
-	gdf = gdf.round(1)
+	gdf = gdf.round(3)
 
 	gdf.to_file(Output_Path + Output_Name, encoding='utf-8')
 

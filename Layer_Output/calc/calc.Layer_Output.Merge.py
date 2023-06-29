@@ -14,6 +14,11 @@ def Get_Shapefile_BasicCIE():
 	# Read shapefile created by basic CIE coef method
 	gdf_BasicCIE = gpd.read_file('../../Basic_Coef/output/output_result/Shapefile/EUI.Prediction.CTBC.Global/EUI.Prediction.CTBC.Global.Basic_Coef.shp', encoding='utf-8')
 
+	# Round the float columns to 3 digits
+	for i in gdf_BasicCIE.columns:
+		
+		if gdf_BasicCIE[i].dtype == 'float64': gdf_BasicCIE[i] = gdf_BasicCIE[i].apply(lambda x: round(x, 3))
+
 	return gdf_BasicCIE
 
 def Get_Shapefile_CountryEUI(List_Country):
@@ -51,9 +56,6 @@ def Output_Shapefile(gdf, Output_Path, Output_Name):
 
 	# Set output path
 	if not os.path.exists(Output_Path):	os.makedirs(Output_Path)
-
-	# Round the number columns to 1 digits
-	gdf = gdf.round(1)
 
 	gdf.to_file(Output_Path + Output_Name, encoding='utf-8')
 
