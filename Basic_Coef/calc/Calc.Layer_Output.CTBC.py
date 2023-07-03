@@ -63,6 +63,13 @@ def Get_EUI():
 
 	return df_EUI
 
+def Get_EUI_SG():
+
+	# Get Singapore EUI data
+	df_EUI_SG = pd.read_csv('../data/EUI_SG/EUI_SG.csv', encoding='utf-8')
+
+	return df_EUI_SG
+
 def Get_Coef_CarbonIntensity():
 	
 	# Read carbon intensity data
@@ -92,6 +99,16 @@ def Mapping_EUI(gdf_Country, df_EUI, df_Coef_CIE):
 
 	return gdf_Country
 
+def Replace_SG(gdf_Country):
+
+	# Get Singapore EUI data
+	df_EUI_SG   = Get_EUI_SG()
+
+	# Replace the EUI attributes in Singapore polygon (EUI_A1, ..., EUI_33) to Singapore EUI data
+	gdf_Country.loc[gdf_Country['COUNTRY']=='SG-Singapore', [i for i in gdf_Country.columns if i.startswith('EUI_')]] = df_EUI_SG.T.values[-1, ...]
+
+	return gdf_Country
+
 def Output_Shapefile(gdf, Output_Path, Output_Name):
 
 	# Set output path
@@ -110,13 +127,14 @@ if (__name__ == '__main__'):
 	gdf_Country = Get_Shapefile()
 
 	# Get EUI
-	df_EUI = Get_EUI()
+	df_EUI      = Get_EUI()
 
 	# Get carbon intensity of electricity
 	df_Coef_CIE = Get_Coef_CarbonIntensity()
 
 	# Mapping the attributes of each prefecture to the EUI table
 	gdf_Country = Mapping_EUI(gdf_Country, df_EUI, df_Coef_CIE)
+	gdf_Country = Replace_SG(gdf_Country)
 
 	# ==================================================================================================
 	# Output geopandas dataframe to shape file
