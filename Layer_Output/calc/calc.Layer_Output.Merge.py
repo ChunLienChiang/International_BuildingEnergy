@@ -52,6 +52,45 @@ def Combine_Shapefile(gdf_BasicCIE, gdf_CountryEUI):
 
 	return gdf_EUI
 
+def Trim_Shapefile(gdf_EUI):
+
+	"""
+	Trim the geodataframe. Detect the polygons that overlap with each other and calculate the ratio of overlap area to the total area. If the ratio is greater than 0.8, the polygon with smaller area will be removed.
+	================================================================================
+
+	Arguments:
+
+		gdf_EUI (GeoDataFrame): The geodataframe to be trimmed.
+
+	Output:
+
+		gdf_EUI (GeoDataFrame): The trimmed geodataframe.
+	"""
+
+	# Get the area of each polygon
+	gdf_EUI['Area'] = gdf_EUI['geometry'].area
+
+	# Get the area of overlap between each pair of polygons
+	print(gdf_EUI['geometry'].apply(lambda x: gdf_EUI['geometry'].intersection(x).area))
+	quit()
+
+	# Get the ratio of overlap area to the total area
+	gdf_EUI['Overlap_Ratio'] = gdf_EUI['Overlap_Area'] / gdf_EUI['Area']
+
+	# Get the index of polygons that overlap with each other
+	List_Index = gdf_EUI[gdf_EUI['Overlap_Ratio'] > 0.8].index
+
+	# Remove the polygon with smaller area
+	for i in List_Index:
+
+		if gdf_EUI.loc[i, 'Area'] < gdf_EUI.loc[i+1, 'Area']: gdf_EUI = gdf_EUI.drop(i)
+		else: gdf_EUI = gdf_EUI.drop(i+1)
+
+	# Remove the columns
+	gdf_EUI = gdf_EUI.drop(['Area', 'Overlap_Area', 'Overlap_Ratio'], axis=1)
+
+	return gdf_EUI
+	
 def Output_Shapefile(gdf, Output_Path, Output_Name):
 
 	# Set output path
@@ -76,6 +115,9 @@ if (__name__ == '__main__'):
 	gdf_EUI = Combine_Shapefile(gdf_BasicCIE, gdf_CountryEUI)
 	
 	# ==================================================================================================
+	# Trim the geodataframe
+	#gdf_EUI = Trim_Shapefile(gdf_EUI)
+
 	# Output geopandas dataframe to shape file
 	Output_Shapefile(\
 		gdf_EUI, \
