@@ -38,7 +38,10 @@ def Get_Shapefile(Spacial_Area='Merge'):
 
 		# Remove the rows that ISO_2 is NaN
 		gdf = gdf[gdf['ISO_2'].notna()]
-		
+	
+	# Remove Peurto Rico
+	gdf = gdf[gdf['ISO_2']!='PR']
+
 	# Create REGNAME (region name) column
 	gdf = gdf.rename(columns={'name': 'REGNAME'})
 

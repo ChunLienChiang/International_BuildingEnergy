@@ -66,13 +66,24 @@ def Trim_Shapefile(gdf_EUI):
 
 		gdf_EUI (GeoDataFrame): The trimmed geodataframe.
 	"""
-
-	# Get the area of each polygon
-	gdf_EUI['Area'] = gdf_EUI['geometry'].area
+	
+	gdf_EUI = gdf_EUI.to_crs(epsg=4326)
 
 	# Get the area of overlap between each pair of polygons
-	print(gdf_EUI['geometry'].apply(lambda x: gdf_EUI['geometry'].intersection(x).area))
+	gdf_EUI['Area'] = gdf_EUI['geometry'].area
+	gdf_EUI = gpd.overlay(gdf_EUI, gdf_EUI, how='intersection')
+	gdf_EUI = gdf_EUI[gdf_EUI['REGNAME_1'] != gdf_EUI['REGNAME_2']]
+
+	# Calculate the area of overlap
+	gdf_EUI['Overlap_Area']    = gdf_EUI['geometry'].area
+	gdf_EUI['Overlap_Area_r1'] = gdf_EUI['Overlap_Area'] / gdf_EUI['Area_1']
+	gdf_EUI['Overlap_Area_r2'] = gdf_EUI['Overlap_Area'] / gdf_EUI['Area_2']
+	gdf_EUI = gdf_EUI[(gdf_EUI['Overlap_Area_r1'] > 0.5)|(gdf_EUI['Overlap_Area_r2'] > 0.5)]
+	gdf_EUI = gdf_EUI[['REGNAME_1', 'REGNAME_2', 'Overlap_Area', 'Overlap_Area_r1', 'Overlap_Area_r2', 'geometry']]
+	gdf_EUI = gdf_EUI.sort_values(by=['Overlap_Area_r1', 'Overlap_Area_r2'])
+	gdf_EUI.to_csv('test.csv')
 	quit()
+	gdf_EUI['geometry'].apply(lambda x: gdf_EUI['geometry'].intersection(x).area)
 
 	# Get the ratio of overlap area to the total area
 	gdf_EUI['Overlap_Ratio'] = gdf_EUI['Overlap_Area'] / gdf_EUI['Area']
