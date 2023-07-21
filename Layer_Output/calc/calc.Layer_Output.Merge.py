@@ -55,7 +55,7 @@ def Combine_Shapefile(gdf_BasicCIE, gdf_CountryEUI):
 def Trim_Shapefile(gdf_EUI):
 
 	"""
-	Trim the geodataframe. Detect the polygons that overlap with each other and calculate the ratio of overlap area to the total area. If the ratio is greater than 0.8, the polygon with smaller area will be removed.
+	Trim the geodataframe. Detect the polygons that overlap with each other and calculate the ratio of overlap area to the total area. If the ratio is greater than 0.5, the polygon with smaller area will be removed.
 	================================================================================
 
 	Arguments:
@@ -66,20 +66,32 @@ def Trim_Shapefile(gdf_EUI):
 
 		gdf_EUI (GeoDataFrame): The trimmed geodataframe.
 	"""
+	
+	gdf_EUI.crs = 'epsg:3857'
 
-	# Get the area of each polygon
-	gdf_EUI['Area'] = gdf_EUI['geometry'].area
-
+	
 	# Get the area of overlap between each pair of polygons
-	print(gdf_EUI['geometry'].apply(lambda x: gdf_EUI['geometry'].intersection(x).area))
-	quit()
+	gdf_EUI['Area'] = gdf_EUI['geometry'].area
+	
+	gdf_EUI = gpd.overlay(gdf_EUI, gdf_EUI, how='intersection', keep_geom_type=False)
+	gdf_EUI = gdf_EUI[gdf_EUI['REGNAME_1'] != gdf_EUI['REGNAME_2']]
 
+	# Calculate the area of overlap
+	gdf_EUI['Overlap_Area']    = gdf_EUI['geometry'].area
+	gdf_EUI['Overlap_Area_r1'] = gdf_EUI['Overlap_Area'] / gdf_EUI['Area_1']
+	gdf_EUI['Overlap_Area_r2'] = gdf_EUI['Overlap_Area'] / gdf_EUI['Area_2']
+	#gdf_EUI = gdf_EUI[(gdf_EUI['Overlap_Area_r1'] > 0.5)|(gdf_EUI['Overlap_Area_r2'] > 0.5)]
+	gdf_EUI = gdf_EUI[['REGNAME_1', 'REGNAME_2', 'Overlap_Area', 'Overlap_Area_r1', 'Overlap_Area_r2']]
+	gdf_EUI = gdf_EUI.sort_values(by=['Overlap_Area_r1', 'Overlap_Area_r2'])
+	
+	gdf_EUI.to_csv('test.csv')
+	
 	# Get the ratio of overlap area to the total area
 	gdf_EUI['Overlap_Ratio'] = gdf_EUI['Overlap_Area'] / gdf_EUI['Area']
 
 	# Get the index of polygons that overlap with each other
 	List_Index = gdf_EUI[gdf_EUI['Overlap_Ratio'] > 0.8].index
-
+	
 	# Remove the polygon with smaller area
 	for i in List_Index:
 
@@ -88,9 +100,31 @@ def Trim_Shapefile(gdf_EUI):
 
 	# Remove the columns
 	gdf_EUI = gdf_EUI.drop(['Area', 'Overlap_Area', 'Overlap_Ratio'], axis=1)
-
-	return gdf_EUI
 	
+	return gdf_EUI
+
+def Replace_Shapefile_EUI(gdf):	
+
+	"""
+	Replace the NaN EUI values in the shapefile by the mean EUI values in Taiwan.
+	================================================================================
+
+	Arguments:
+
+		gdf (GeoDataFrame): The geodataframe to be replaced.
+
+	Output:
+
+		gdf (GeoDataFrame): The replaced geodataframe.
+	"""
+
+	# Replace the NaN EUI values in EUI_01, and EUI_20 by the mean EUI values in Taiwan
+	gdf.loc[gdf['EUI_01'].isnull(), 'EUI_01'] = gdf.loc[gdf['COUNTRY']=='TW-臺灣', 'EUI_01'].dropna().mean()
+	gdf.loc[gdf['EUI_10'].isnull(), 'EUI_10'] = gdf.loc[gdf['COUNTRY']=='TW-臺灣', 'EUI_10'].dropna().mean()
+	gdf.loc[gdf['EUI_20'].isnull(), 'EUI_20'] = gdf.loc[gdf['COUNTRY']=='TW-臺灣', 'EUI_20'].dropna().mean()
+
+	return gdf
+
 def Output_Shapefile(gdf, Output_Path, Output_Name):
 
 	# Set output path
@@ -113,11 +147,14 @@ if (__name__ == '__main__'):
 
 	# Combine the shapefiles
 	gdf_EUI = Combine_Shapefile(gdf_BasicCIE, gdf_CountryEUI)
+
+	# Output geodataframe to csv file
+	pd.DataFrame(gdf_EUI).drop(columns=['geometry']).to_csv('EUI.Prediction.CTBC.Global.csv', encoding='utf-8', index=False)
 	
 	# ==================================================================================================
-	# Trim the geodataframe
-	#gdf_EUI = Trim_Shapefile(gdf_EUI)
-
+	# Fill EUI in Japan and US by the mean EUI in Taiwan
+	gdf_EUI = Replace_Shapefile_EUI(gdf_EUI)
+	
 	# Output geopandas dataframe to shape file
 	Output_Shapefile(\
 		gdf_EUI, \
